@@ -25,11 +25,11 @@ def areaAPI(update):
 			radio["lat"] = update["lat"] # Use loc from CoT message..
 			radio["lon"] = update["lon"] 
 			print(radio)
-		r = requests.post("https://cloudrf.com/API/area?atak", data=radio, verify=False) # DO IT 
+		r = requests.post("https://cloudrf.com/API/area?atak", data=radio) # DO IT 
 		print("\nAPI RESPONSE:\n"+r.text)
 		j = json.loads(r.text)
 		if 'kmz' in j: 
-			r = requests.get("https://cloudrf.com/API/archive/data?callsign="+str(update["cs"])+"&atak="+str(j["id"])+"&uid="+str(radio["uid"])+"&key="+radio["key"], verify=False) # ATAK fairy
+			r = requests.get("https://cloudrf.com/API/archive/data?callsign="+str(update["cs"])+"&atak="+str(j["id"])+"&uid="+str(radio["uid"])+"&key="+radio["key"]) # ATAK fairy
 			print(r.text)
 s.bind(('', 8099)) # Default TAK server port
 s.listen(1)
